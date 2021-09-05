@@ -8,7 +8,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 import { hashedPassword } from 'src/utils/authentication';
-import { dbErrorCode } from 'src/database/dbErrorCode';
+import { dbErrorCode } from 'src/utils/dbErrorCode';
 
 @Injectable()
 export class UsersService {
