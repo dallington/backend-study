@@ -34,5 +34,7 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# Config Database
-/src/config/database.ts
+# Configs
+# /src/config/*.ts
+*.env
+.env
