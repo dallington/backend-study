@@ -28,7 +28,7 @@ export class UsersService {
       })
       .catch((error) => {
         let message = null;
-        // REFACTOR: melhorar tratamento de erro do mongoose
+
         if (error?.code === dbErrorCode.DuplicateKey) {
           message = 'User with that email already exists';
         }
@@ -46,11 +46,24 @@ export class UsersService {
 
   async findAll(): Promise<User[]> {
     return this.userModel.find().exec();
+    return;
   }
 
   async findOne(id: string): Promise<User> {
     return this.userModel.findById(id).exec();
   }
+
+  async findByEmail(email: string): Promise<any> {
+    console.log('find', email);
+    return await this.userModel.findOne({ email: email }).exec();
+  }
+
+  /*  async findOneByEmail(email: string): Promise<User | undefined> {
+    console.log(email);
+    const UserEmail = this.userModel.find({ email: email });
+    console.log(UserEmail);
+    return;
+  } */
 
   async update(id: string, updateUserDto: UpdateUserDto) {
     return this.userModel.findByIdAndUpdate(
