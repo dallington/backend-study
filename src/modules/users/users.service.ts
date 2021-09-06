@@ -20,26 +20,30 @@ export class UsersService {
       ...createUserDto,
       password: userHasPassword,
     });
-    return await createdUser
-      .save()
-      .then(() => {
-        createdUser.password = undefined;
-        return createdUser;
-      })
-      .catch((error) => {
-        let message = null;
+    try {
+      return await createdUser
+        .save()
+        .then(() => {
+          createdUser.password = undefined;
+          return createdUser;
+        })
+        .catch((error) => {
+          let message = null;
 
-        if (error?.code === dbErrorCode.DuplicateKey) {
-          message = 'User with that email already exists';
-        }
-        throw new HttpException(
-          {
-            status: HttpStatus.BAD_REQUEST,
-            error: message || error.message,
-          },
-          HttpStatus.FORBIDDEN,
-        );
-      });
+          if (error?.code === dbErrorCode.DuplicateKey) {
+            message = 'User with that email already exists';
+          }
+          throw new HttpException(
+            {
+              status: HttpStatus.BAD_REQUEST,
+              error: message || error.message,
+            },
+            HttpStatus.FORBIDDEN,
+          );
+        });
+    } catch (err) {
+      console.log(err);
+    }
 
     //return createdUser;
   }
