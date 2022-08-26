@@ -32,7 +32,7 @@
     "@nestjs/platform-express": "^8.0.0",
     "bcrypt": "^5.0.1",
     "md5": "^2.3.0",
-    "mongoose": "^6.0.4",
+    "mongoose": "^6.4.6",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
